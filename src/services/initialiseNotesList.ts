@@ -20,7 +20,7 @@ export async function initialiseNotesList () {
   //       https://ruben.verborgh.org/blog/2019/06/17/shaping-linked-data-apps/#need-for-shapes
   const notesListRef = storage + 'public/notes.ttl';
   const notesList = createDocument(notesListRef);
-  await notesList.save();
-  await addToTypeIndex(publicTypeIndex, notesList, schema.TextDigitalDocument);
-  return notesList;
+  const savedList = await notesList.save();
+  await addToTypeIndex(publicTypeIndex, savedList, schema.TextDigitalDocument);
+  return savedList;
 }
